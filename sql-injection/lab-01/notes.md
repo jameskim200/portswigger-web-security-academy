@@ -1,4 +1,4 @@
-Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
+Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data  
 https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data
 
 This lab contains a SQL injection vulnerability in the product category filter. When the user selects a category, the application carries out a SQL query like the following:
@@ -10,15 +10,18 @@ To solve the lab, perform a SQL injection attack that causes the application to 
 ---
 
 ### Enumeration
+
 `/filter?category=Gifts`
 - looks like the `category` filter is a URL query parameter which can be **user-controlled** via the URL  
 - from the given, we know that the released column exists in the database but it is not displayed in the UI so it is probably handled in the backend
 
 ### Vulnerability Detection
+
 Is the `category` filter vulnerable to SQLi?
 - injecting a `'` into the `category` parameter results in an internal server error, indicating a SQL syntax issue and confirming that the parameter is vulnerable to SQLi
 
 ### Exploitation
+
 `'-- -`
 - performs the query: `SELECT * FROM products WHERE category = ''-- -' AND released = 1`
 - which evaluates to: `SELECT * FROM products WHERE category = ''`
