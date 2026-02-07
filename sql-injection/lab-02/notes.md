@@ -1,4 +1,4 @@
-Lab: SQL injection vulnerability allowing login bypass 
+Lab: SQL injection vulnerability allowing login bypass  
 https://portswigger.net/web-security/sql-injection/lab-login-bypass
 
 This lab contains a SQL injection vulnerability in the login function.
